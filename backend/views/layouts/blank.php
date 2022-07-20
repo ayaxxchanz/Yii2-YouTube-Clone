@@ -19,15 +19,17 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
-<?php $this->beginBody() ?>
+    <?php $this->beginBody() ?>
 
-<main role="main">
-    <div class="container">
-        <?= $content ?>
-    </div>
-</main>
+    <?php echo $this->render('../layouts/_header'); ?>
 
-<?php $this->endBody() ?>
+    <main role="main">
+        <div class="container">
+            <?= $content ?>
+        </div>
+    </main>
+
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage();
