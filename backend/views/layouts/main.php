@@ -28,49 +28,18 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
 
     <header>
-        <?php
-        NavBar::begin([
-            'brandLabel' => Yii::$app->name,
-            'brandUrl' => Yii::$app->homeUrl,
-        ]);
-        $menuItems = [
-            ['label' => 'Home', 'url' => ['/site/index']],
-        ];
-        if (Yii::$app->user->isGuest) {
-            $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-        } else {
-            $menuItems[] = [
-                'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                'url' => ['/site/logout'],
-                'linkOptions' => [
-                    'data-method' => 'post'
-                ]
-            ];
-        }
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav ml-auto'],
-            'items' => $menuItems,
-        ]);
-        NavBar::end();
-        ?>
+        <?php echo $this->render('_header'); ?>
     </header>
 
-    <main role="main" class="flex-shrink-0">
-        <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
+    <main role="main" class="d-flex">
+        <?php echo $this->render('_sidebar'); ?>
+
+        <div class="content-wrapper p-3">
             <?= Alert::widget() ?>
             <?= $content ?>
         </div>
     </main>
 
-    <footer class="footer mt-auto py-3 text-muted">
-        <div class="container">
-            <p class="float-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-            <p class="float-right"><?= Yii::powered() ?></p>
-        </div>
-    </footer>
 
     <?php $this->endBody() ?>
 </body>
