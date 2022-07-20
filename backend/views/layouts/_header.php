@@ -9,12 +9,13 @@ NavBar::begin([
     'brandUrl' => Yii::$app->homeUrl,
     'options' => ['class' => 'navbar-expand-lg navbar-light bg-light shadow-sm']
 ]);
-$menuItems = [
-    ['label' => 'Home', 'url' => ['/site/index']],
-];
 if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
 } else {
+    $menuItems[] = [
+        'label' => 'Create', 
+        'url' => ['/site/create'],
+    ];
     $menuItems[] = [
         'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
         'url' => ['/site/logout'],
