@@ -8,7 +8,7 @@ use yii\db\Migration;
  *
  * - `{{%user}}`
  */
-class m220721_005051_create_videos_table extends Migration
+class m220721_010937_create_videos_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -16,12 +16,19 @@ class m220721_005051_create_videos_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%videos}}', [
-            'id' => $this->primaryKey(),
             'video_id' => $this->string(16)->notNull(),
             'title' => $this->string(512)->notNull(),
             'description' => $this->text(),
+            'tags' => $this->string(512),
+            'status' => $this->integer(1),
+            'has_thumbnail' => $this->boolean(),
+            'video_name' => $this->string(512),
+            'created_at' => $this->integer(11),
+            'updated_at' => $this->integer(11),
             'created_by' => $this->integer(11),
         ]);
+
+        $this->addPrimaryKey('PK_videos_video_id','{{%videos}}','video_id');
 
         // creates index for column `created_by`
         $this->createIndex(
