@@ -13,8 +13,8 @@ if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
 } else {
     $menuItems[] = [
-        'label' => 'Create', 
-        'url' => ['/site/create'],
+        'label' => 'Create',
+        'url' => ['/video/create'],
     ];
     $menuItems[] = [
         'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
