@@ -12,30 +12,35 @@ use yii\bootstrap4\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'video_id')->textInput(['maxlength' => true]) ?>
+    <div class="row mr-2">
+        <div class="col-sm-8">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
+            <div class="form-group">
+                <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            </div>
+        </div>
+        <div class="col-sm-4 bg-light p-0">
+            <div class=>
+                <video class="embed-responsive" src="<?php echo $model->getVideoLink() ?>" controls></video>
+                <div class="m-3">
+                    <div class="text-muted ts-2">Video link</div>
+                    <a href="<?php echo $model->getVideoLink() ?>">Open Video</a>
+                </div>
+            </div>
+            <div class="m-3">
+                <div class="text-muted">Filename</div>
+                <?php echo $model->video_name ?>
+                <?= $form->field($model, 'status')->textInput() ?>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'status')->textInput() ?>
 
-    <?= $form->field($model, 'has_thumbnail')->textInput() ?>
+        <?php ActiveForm::end(); ?>
 
-    <?= $form->field($model, 'video_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>
