@@ -42,7 +42,9 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [],
+            'rules' => [
+                'video/update/<video_id>' => 'video/update'
+            ],
         ],
         'assetManager' => [
             'appendTimestamp' => true
