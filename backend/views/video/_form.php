@@ -10,13 +10,23 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="video-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype' => 'multipart/form-data']
+    ]); ?>
 
     <div class="row mr-2">
         <div class="col-sm-8">
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+            <div class="form-group">
+                <label><?php echo $model->getAttributeLabel('thumbnail') ?></label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail">
+                    <label class="custom-file-label" for="thumbnail">Choose file</label>
+                </div>
+            </div>
 
             <?= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 
@@ -26,7 +36,8 @@ use yii\bootstrap4\ActiveForm;
         </div>
         <div class="col-sm-4 bg-light p-0">
             <div class=>
-                <video class="embed-responsive" src="<?php echo $model->getVideoLink() ?>" controls></video>
+                <video class="embed-responsive" poster="<?php echo $model->getThumbnailLink() ?>"
+                    src="<?php echo $model->getVideoLink() ?>" controls></video>
                 <div class="m-3">
                     <div class="text-muted ts-2">Video link</div>
                     <a href="<?php echo $model->getVideoLink() ?>">Open Video</a>
