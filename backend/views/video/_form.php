@@ -46,7 +46,7 @@ use yii\bootstrap4\ActiveForm;
             <div class="m-3">
                 <div class="text-muted">Filename</div>
                 <?php echo $model->video_name ?>
-                <?= $form->field($model, 'status')->textInput() ?>
+                <?= $form->field($model, 'status')->dropdownList($model->getStatusLabels()) ?>
             </div>
         </div>
 
