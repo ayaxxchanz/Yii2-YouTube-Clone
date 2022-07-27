@@ -75,7 +75,8 @@ class Video extends \yii\db\ActiveRecord
             [['video_id'], 'unique'],
             ['has_thumbnail', 'default', 'value' => 0], // set default thumbnail value
             ['status', 'default', 'value' => self::STATUS_UNLISTED], // set default status value
-            ['thumbnail', 'image', 'minWidth' => 1280],
+            ['video', 'file', 'extensions' => ['mp4', 'mkv']], // set only accept valid video file
+            ['thumbnail', 'image', 'minWidth' => 1280], // set minimum image width
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
