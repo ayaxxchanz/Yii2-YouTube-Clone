@@ -2,10 +2,12 @@
 
 namespace common\models;
 
+use Imagine\Image\Box;
 use Yii;
+use yii\imagine\Image;
+use yii\helpers\FileHelper;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
-use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "{{%video}}".
@@ -73,6 +75,7 @@ class Video extends \yii\db\ActiveRecord
             [['video_id'], 'unique'],
             ['has_thumbnail', 'default', 'value' => 0], // set default thumbnail value
             ['status', 'default', 'value' => self::STATUS_UNLISTED], // set default status value
+            ['thumbnail', 'image', 'minWidth' => 1280],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
@@ -156,6 +159,12 @@ class Video extends \yii\db\ActiveRecord
             }
 
             $this->thumbnail->saveAs($thumbnailPath);
+
+            /* Resize image */
+            Image::getImagine()
+                ->open($thumbnailPath)
+                ->thumbnail(new Box(1280, 720))
+                ->save();
         }
         return true;
     }

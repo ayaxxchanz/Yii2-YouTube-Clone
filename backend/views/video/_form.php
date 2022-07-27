@@ -16,6 +16,9 @@ use yii\bootstrap4\ActiveForm;
 
     <div class="row mr-2">
         <div class="col-sm-8">
+            <!-- Display error message -->
+            <?php echo $form->errorSummary($model) ?>
+
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
@@ -36,8 +39,7 @@ use yii\bootstrap4\ActiveForm;
         </div>
         <div class="col-sm-4 bg-light p-0">
             <div class=>
-                <video class="embed-responsive" poster="<?php echo $model->getThumbnailLink() ?>"
-                    src="<?php echo $model->getVideoLink() ?>" controls></video>
+                <video class="embed-responsive" poster="<?php echo $model->getThumbnailLink() ?>" src="<?php echo $model->getVideoLink() ?>" controls></video>
                 <div class="m-3">
                     <div class="text-muted ts-2">Video link</div>
                     <a href="<?php echo $model->getVideoLink() ?>">Open Video</a>
