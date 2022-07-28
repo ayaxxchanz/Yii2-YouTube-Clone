@@ -42,7 +42,7 @@ use yii\bootstrap4\ActiveForm;
             </div>
         </div>
         <div class="col-sm-4 bg-light p-0">
-            <div class=>
+            <div>
                 <video class="embed-responsive" poster="<?php echo $model->getThumbnailLink() ?>"
                     src="<?php echo $model->getVideoLink() ?>" controls></video>
                 <div class="m-3">
