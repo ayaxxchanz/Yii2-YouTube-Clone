@@ -8,6 +8,7 @@ use common\models\Video;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -23,6 +24,16 @@ class VideoController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                /* Redirect unauthorized access */
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@']
+                        ]
+                    ]
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
