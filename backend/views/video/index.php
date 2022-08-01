@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 // Return the view from _video_item.php for Video ID column
-                'attribute' => 'video_id',
+                'attribute' => 'title',
                 'content' => function ($model) {
                     return $this->render('_video_item', ['model' => $model]);
                 }
