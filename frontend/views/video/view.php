@@ -10,7 +10,8 @@
         <h5 class="mt-2"><?php echo $model->title ?></h5>
         <div class="d-flex justify-content-between align-items-center">
             <div class="text-muted">
-                123 views • <?php echo Yii::$app->formatter->asDate($model->created_at) ?>
+                <?php echo $model->getViews()->count() ?> views •
+                <?php echo Yii::$app->formatter->asDate($model->created_at) ?>
             </div>
             <div>
                 <button class="btn btn-sm btn-outline-primary">
