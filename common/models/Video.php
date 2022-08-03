@@ -203,4 +203,12 @@ class Video extends \yii\db\ActiveRecord
             unlink($thumbnailPath);
         }
     }
+
+    public function isLikedBy($userId)
+    {
+        return VideoLike::find()
+            ->userIdVideoId($userId, $this->video_id)
+            ->liked()
+            ->one();
+    }
 }
