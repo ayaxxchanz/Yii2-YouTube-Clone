@@ -11,7 +11,7 @@ use yii\helpers\Url;
 <a href="<?php echo Url::to(['/video/like', 'id' => $model->video_id]) ?>"
     class="btn btn-sm <?php echo $model->isLikedBy(Yii::$app->user->id) ? 'btn-outline-primary' : 'btn-outline-secondary' ?>"
     data-method="post" data-pjax="1">
-    <i class="fa-solid fa-thumbs-up"></i> 9
+    <i class="fa-solid fa-thumbs-up"></i> <?php echo $model->getLikes()->count() ?>
 </a>
 <button class="btn btn-sm btn-outline-secondary">
     <i class="fa-regular fa-thumbs-down"></i> 3
