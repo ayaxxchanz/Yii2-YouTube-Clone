@@ -19,7 +19,7 @@ use Yii;
 class VideoLike extends \yii\db\ActiveRecord
 {
     const TYPE_LIKE = 1;
-    const TYPE_DISLIKE = 1;
+    const TYPE_DISLIKE = 2;
     /**
      * {@inheritdoc}
      */
