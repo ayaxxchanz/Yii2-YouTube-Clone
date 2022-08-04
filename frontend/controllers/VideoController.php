@@ -76,7 +76,7 @@ class VideoController extends Controller
             ->userIdVideoId($userId, $id)
             ->one();
 
-        // If user clicked the buttons for the first time, save the LIKE/DISLIKE
+        // If user clicked the buttons for the first time, save the LIKE
         if (!$videoLikeDislike) {
             $this->saveLikeDislike($id, $userId, VideoLike::TYPE_LIKE);
         }
@@ -84,10 +84,38 @@ class VideoController extends Controller
         else if ($videoLikeDislike->type == VideoLike::TYPE_LIKE) {
             $videoLikeDislike->delete();
         }
-        // If user already clicked the DISLIKE button, delete the DISLIKE and save new LIKE
+        // If user already clicked the DISLIKE button and then click LIKE, delete the DISLIKE and save new LIKE
         else {
             $videoLikeDislike->delete();
             $this->saveLikeDislike($id, $userId, VideoLike::TYPE_LIKE);
+        }
+
+        return $this->renderAjax('_buttons', [
+            'model' => $video
+        ]);
+    }
+
+    public function actionDislike($id)
+    {
+        $video = $this->findVideo($id);
+        $userId = \Yii::$app->user->id;
+
+        $videoLikeDislike = VideoLike::find()
+            ->userIdVideoId($userId, $id)
+            ->one();
+
+        // If user clicked the buttons for the first time, save the DISLIKE
+        if (!$videoLikeDislike) {
+            $this->saveLikeDislike($id, $userId, VideoLike::TYPE_DISLIKE);
+        }
+        // If user already clicked the DISLIKE button, delete the DISLIKE
+        else if ($videoLikeDislike->type == VideoLike::TYPE_DISLIKE) {
+            $videoLikeDislike->delete();
+        }
+        // If user already clicked the LIKE button and then click DISLIKE, delete the LIKE and save new DISLIKE
+        else {
+            $videoLikeDislike->delete();
+            $this->saveLikeDislike($id, $userId, VideoLike::TYPE_DISLIKE);
         }
 
         return $this->renderAjax('_buttons', [
