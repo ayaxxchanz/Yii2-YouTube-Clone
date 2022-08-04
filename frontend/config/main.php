@@ -40,7 +40,9 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [],
+            'rules' => [
+                '/c/<username>' => '/channel/view'
+            ],
         ],
         'assetManager' => [
             'appendTimestamp' => true
