@@ -3,20 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%subscribe}}`.
+ * Handles the creation of table `{{%subscriber}}`.
  * Has foreign keys to the tables:
  *
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m220804_080627_create_subscribe_table extends Migration
+class m220805_021820_create_subscriber_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%subscribe}}', [
+        $this->createTable('{{%subscriber}}', [
             'id' => $this->primaryKey(),
             'channel_id' => $this->integer(11),
             'user_id' => $this->integer(11),
@@ -25,15 +25,15 @@ class m220804_080627_create_subscribe_table extends Migration
 
         // creates index for column `channel_id`
         $this->createIndex(
-            '{{%idx-subscribe-channel_id}}',
-            '{{%subscribe}}',
+            '{{%idx-subscriber-channel_id}}',
+            '{{%subscriber}}',
             'channel_id'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-subscribe-channel_id}}',
-            '{{%subscribe}}',
+            '{{%fk-subscriber-channel_id}}',
+            '{{%subscriber}}',
             'channel_id',
             '{{%user}}',
             'id',
@@ -42,15 +42,15 @@ class m220804_080627_create_subscribe_table extends Migration
 
         // creates index for column `user_id`
         $this->createIndex(
-            '{{%idx-subscribe-user_id}}',
-            '{{%subscribe}}',
+            '{{%idx-subscriber-user_id}}',
+            '{{%subscriber}}',
             'user_id'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-subscribe-user_id}}',
-            '{{%subscribe}}',
+            '{{%fk-subscriber-user_id}}',
+            '{{%subscriber}}',
             'user_id',
             '{{%user}}',
             'id',
@@ -65,28 +65,28 @@ class m220804_080627_create_subscribe_table extends Migration
     {
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-subscribe-channel_id}}',
-            '{{%subscribe}}'
+            '{{%fk-subscriber-channel_id}}',
+            '{{%subscriber}}'
         );
 
         // drops index for column `channel_id`
         $this->dropIndex(
-            '{{%idx-subscribe-channel_id}}',
-            '{{%subscribe}}'
+            '{{%idx-subscriber-channel_id}}',
+            '{{%subscriber}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-subscribe-user_id}}',
-            '{{%subscribe}}'
+            '{{%fk-subscriber-user_id}}',
+            '{{%subscriber}}'
         );
 
         // drops index for column `user_id`
         $this->dropIndex(
-            '{{%idx-subscribe-user_id}}',
-            '{{%subscribe}}'
+            '{{%idx-subscriber-user_id}}',
+            '{{%subscriber}}'
         );
 
-        $this->dropTable('{{%subscribe}}');
+        $this->dropTable('{{%subscriber}}');
     }
 }

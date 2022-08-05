@@ -3,11 +3,11 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\Subscribe]].
+ * This is the ActiveQuery class for [[\common\models\Subscriber]].
  *
- * @see \common\models\Subscribe
+ * @see \common\models\Subscriber
  */
-class SubscribeQuery extends \yii\db\ActiveQuery
+class SubscriberQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class SubscribeQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return \common\models\Subscribe[]|array
+     * @return \common\models\Subscriber[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class SubscribeQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return \common\models\Subscribe|array|null
+     * @return \common\models\Subscriber|array|null
      */
     public function one($db = null)
     {

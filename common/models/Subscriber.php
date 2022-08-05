@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%subscribe}}".
+ * This is the model class for table "{{%subscriber}}".
  *
  * @property int $id
  * @property int|null $channel_id
@@ -15,14 +15,14 @@ use Yii;
  * @property User $channel
  * @property User $user
  */
-class Subscribe extends \yii\db\ActiveRecord
+class Subscriber extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%subscribe}}';
+        return '{{%subscriber}}';
     }
 
     /**
@@ -72,10 +72,10 @@ class Subscribe extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return \common\models\query\SubscribeQuery the active query used by this AR class.
+     * @return \common\models\query\SubscriberQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\SubscribeQuery(get_called_class());
+        return new \common\models\query\SubscriberQuery(get_called_class());
     }
 }
