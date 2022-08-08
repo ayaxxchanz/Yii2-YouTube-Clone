@@ -8,7 +8,8 @@ use yii\widgets\Pjax;
 
 <div class="row">
     <div class="col-sm-8">
-        <video class="embed-responsive" poster="<?php echo $model->getThumbnailLink() ?>" src="<?php echo $model->getVideoLink() ?>" controls></video>
+        <video class="embed-responsive" poster="<?php echo $model->getThumbnailLink() ?>"
+            src="<?php echo $model->getVideoLink() ?>" controls></video>
         <h5 class="mt-2"><?php echo $model->title ?></h5>
         <div class="d-flex justify-content-between align-items-center">
             <div class="text-muted">
@@ -25,9 +26,7 @@ use yii\widgets\Pjax;
         </div>
         <div>
             <p>
-                <?php echo Html::a($model->createdBy->username, [
-                    '/channel/view', 'username' => $model->createdBy->username
-                ]) ?>
+                <?php echo \common\helpers\Html::channelLink($model->createdBy) ?>
             </p>
             <?php echo Html::encode($model->description) ?>
         </div>
