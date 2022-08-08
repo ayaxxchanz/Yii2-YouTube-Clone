@@ -57,6 +57,17 @@ class ChannelController extends Controller
             $subscriber->user_id = $userId;
             $subscriber->created_at = time();
             $subscriber->save();
+            // Send email when there is a new subscriber
+            \Yii::$app->mailer->compose([
+                'html' => 'subscriber-html', 'text' => 'subscriber-text'
+            ], [
+                'channel' => $channel,
+                'user' => \Yii::$app->user->identity
+            ])
+                ->setFrom(\Yii::$app->params['senderEmail'])
+                ->setTo($channel->email)
+                ->setSubject('You have a new subsriber')
+                ->send();
         }
         // If user already subscribed, then unsubscribed
         else {
